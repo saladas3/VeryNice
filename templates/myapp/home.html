@@ -1,5 +1,12 @@
 {% extends 'index.html' %}
 
 {% block content %}
-
+    <title class="card-title">Miau Miau</title>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
 {% endblock %}

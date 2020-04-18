@@ -30,11 +30,15 @@
         <ul class="navbar-nav mr-auto">
 
             <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="{% url 'myapp-home' %}">Home <span class="sr-only">(current)</span></a>
             </li>
 
             <li class="nav-item">
                 <a class="nav-link" href="#">Contact</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
             </li>
 
             <li class="nav-item dropdown">
@@ -52,9 +56,13 @@
 
         </ul>
 
-        <a class="nav-link" href="#" role="button">About</a>
-        <a class="nav-link" href="Register" role="button">Register</a>
-        <a class="nav-link" href="#" role="button">Login</a>
+        {% if user.is_authenticated %}
+            <big class="nav-item">Hello <a class="ml-2" href="#">{{ user.username }}</a></big>
+            <a class="nav-link" href="{% url 'logout' %}" role="button">Logout</a>
+        {% else %}
+            <a class="nav-link" href="{% url 'register' %}" role="button">Register</a>
+            <a class="nav-link" href="{% url 'login' %}" role="button">Login</a>
+        {% endif %}
 
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
